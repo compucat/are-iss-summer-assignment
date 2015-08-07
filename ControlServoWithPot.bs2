@@ -1,0 +1,17 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ControlServoWithPot.bs2: Rotation in, rotation out.
+time VAR Word
+scaleFactor CON 205
+offset CON 500
+delay CON 10
+
+
+DO
+	HIGH 7
+  PAUSE delay
+  RCTIME 7, 1, time
+  DEBUG ? time
+  time=(time */ scaleFactor)+offset
+  PULSOUT 14, time
+LOOP

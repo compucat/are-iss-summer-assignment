@@ -1,0 +1,29 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' DisplayDigitsWithLookup: Wahey, optimization!
+
+OUTH=%00000000 'Init all outputs on the high port to LOW
+DIRH=%11111111 'Set all pins on high port to outputs
+
+DEBUG "index  OUTH", CR,
+      "-----  --------", CR
+index VAR Nib
+FOR index=0 TO 9
+  LOOKUP index,
+'Pins:BAFG.CDE
+     [%11100111,      '0
+     %10000100,       '1
+     %11010011,       '2
+     %11010110,       '3
+     %10110100,       '4
+     %01110110,       '5
+     %01110111,       '6
+     %11000100,       '7
+     %11110111,       '8
+     %11110110], OUTH '9
+     DEBUG "   ", DEC2 index, "  ", BIN8 OUTH, CR
+     PAUSE 1000
+NEXT
+
+OUTH=%00000000 'Blank the display
+END

@@ -1,0 +1,23 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' DisplayDigits: Wahey, outputting to a port at a time!
+
+OUTH=%00000000 'Init all outputs on the high port to LOW
+DIRH=%11111111 'Set all pins on high port to outputs
+
+'Pins:BAFG.CDE
+OUTH=%11110101 'A
+PAUSE 1000
+OUTH=%00110111 'b
+PAUSE 1000
+OUTH=%01100011 'C
+PAUSE 1000
+OUTH=%10010111 'd
+PAUSE 1000
+OUTH=%01110011 'E
+PAUSE 1000
+OUTH=%01110001 'F
+PAUSE 1000
+
+OUTH=%00000000 'Blank the display
+END

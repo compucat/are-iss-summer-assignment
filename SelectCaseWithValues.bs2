@@ -1,0 +1,18 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SelectCaseWithValues.bs2: a.k.a. switch()
+value VAR Word
+DO
+	DEBUG "Enter a value (0-65535): "
+  DEBUGIN DEC value
+  SELECT value
+    CASE 0, 1
+      DEBUG "BIT", CR
+    CASE 2 TO 15
+      DEBUG "Nib (nibble)", CR
+    CASE 16 TO 255
+      DEBUG "Byte", CR
+    CASE ELSE
+      DEBUG "Word", CR
+  ENDSELECT
+LOOP

@@ -1,0 +1,20 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PhototransistorHysteresis.bs2: Software Schmitt triggers!
+
+valMax CON 3000
+valMin CON 200
+time VAR Word
+
+DO
+  HIGH 2
+  PAUSE 3
+  RCTIME 2, 1, time
+  time=time MAX valMax MIN valMin
+  DEBUG HOME, "RC time: ", DEC time, "                   ", CR
+  IF time>((valMax-valMin)/4) THEN
+    DEBUG "Lights on! ", CR
+  ELSEIF time<(3*((valMax-valMin)/4)) THEN
+    DEBUG "Lights out!", CR
+  ENDIF
+LOOP

@@ -1,0 +1,21 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' DigitalPotUpDown.bs2: We could have just used PWM....
+i VAR Word
+HIGH 5
+FOR i=1 TO 65
+  PULSOUT 6, 1
+  PAUSE 1
+NEXT
+DO
+	LOW 5
+	FOR i=1 TO 128
+    PULSOUT 6, 1
+    PAUSE 1
+  NEXT
+  HIGH 5
+	FOR i=1 TO 128
+    PULSOUT 6, 1
+    PAUSE 1
+  NEXT
+LOOP

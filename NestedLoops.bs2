@@ -1,0 +1,16 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' NestedLoops.bs2: Didn't we just do this in the last example?
+time VAR Word
+freq VAR Word
+
+DEBUG "Duration   Frequency", CR, "--------   ---------", CR
+
+FOR time=4000 TO 1000 STEP 1000
+  FOR freq=1000 TO 3000 STEP 500
+    DEBUG "   ", DEC5 time, "       ", DEC5 freq, CR
+    FREQOUT 9, time, freq
+  NEXT
+  DEBUG CR
+NEXT
+END

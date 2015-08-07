@@ -1,0 +1,20 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PhototransistorAnalogToBinary.bs2: Wow, the Stamp is overkill for this!
+
+valMax CON 3000
+valMin CON 20
+time VAR Word
+
+DO
+  HIGH 2
+  PAUSE 3
+  RCTIME 2, 1, time
+  time=time MAX valMax MIN valMin
+  DEBUG HOME, "RC time: ", DEC time, "                   ", CR
+  IF time>((valMax-valMin)/2) THEN
+    DEBUG "Lights on! ", CR
+  ELSE
+    DEBUG "Lights out!", CR
+  ENDIF
+LOOP

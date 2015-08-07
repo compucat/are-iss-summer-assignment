@@ -1,0 +1,18 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' DigitalPotUpDownWithToggle.bs2: We could have just used PWM....
+i VAR Word
+
+' This code is optional, but recommended as removing it causes a small timing difference upon startup.
+'HIGH 5
+'FOR i=1 TO 65
+'  PULSOUT 6, 1
+'  PAUSE 20
+'NEXT
+DO
+  TOGGLE 5
+	FOR i=1 TO 128
+    PULSOUT 6, 1
+    PAUSE 20
+  NEXT
+LOOP

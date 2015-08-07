@@ -1,0 +1,46 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TerminalControlledDigitalPot.bs2: Setting LED brightness with a terminal.
+
+'---INIT---
+tap VAR Byte
+newTap VAR Byte
+i VAR Byte
+delayFade CON 10
+'Assuming U/D on pin 5 and CLK on pin 6
+LOW 5
+FOR i=0 TO 127 'Init pot to low position
+  PULSOUT 6, 1
+NEXT
+tap=0
+'---MAIN---
+DO
+  GOSUB UserIO
+  GOSUB MovePot
+LOOP
+
+
+'------SUBROUTINES------
+
+UserIO:
+  DEBUG "Current tap: ", DEC tap, CR, "New tap (from 0 to 127): "
+  DEBUGIN DEC newTap
+  newTap=newTap MAX 127 MIN 0
+  IF newTap=tap THEN
+    DEBUG "Error: requested tap same as current tap", CR
+    GOTO UserIO 'You could also use a do...loop.
+  ENDIF
+  RETURN
+
+MovePot:
+  IF newTap<tap THEN
+  	LOW 5
+  ELSE
+  	HIGH 5
+  ENDIF
+  FOR i=tap TO newTap
+    PULSOUT 6, 1
+    PAUSE delayFade
+  NEXT
+  tap=newTap
+  RETURN

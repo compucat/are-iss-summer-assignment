@@ -1,0 +1,27 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' NotesAndDurations.bs2: Frere Jacques with a semi-intelligent parser!
+
+notes DATA "C","D","E","C","C","D","E","C","E","F","G","E","F","G","Q"
+times DATA 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 4, 2
+
+wholeNote CON 2000 'Arbitrarily defining the tune to run at 120 BPM
+index VAR Byte
+index=0 'C programmer's instincts kicking in here-never assume that a variable is initialized to anything unless you do it yourself!
+				'In case you didn't know, in C, variables are not guaranteed to be initialized to anything-they could contain some random junk from
+        'whatever was left over in RAM from some other program.
+offset VAR Nib
+noteName VAR Byte
+noteFreq VAR Word
+noteTime VAR Word
+
+DO UNTIL noteName="Q"
+  READ notes+index, noteName
+  LOOKDOWN noteName, ["a", "b", "B", "C", "d", "D", "e", "E", "F", "g", "G", "a", "P", "Q"], offset 'Lowercase letters are flat
+  LOOKUP offset, [1760, 1865, 1976, 2093, 2217, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 0, 0], noteFreq
+  READ times+index, noteTime
+  noteTime=WholeNote/noteTime
+  FREQOUT 9, noteTime, noteFreq
+  index=index+1
+LOOP
+END

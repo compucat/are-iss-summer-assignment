@@ -1,0 +1,34 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestServoPositions.bs2: An automated test routine to test servo positions.
+' Parallax, why did you have to pick such annoying units for PULSOUT? Why not use microseconds instead of 2-microseconds?
+DEBUG "Ready. Each servo position will be held for two seconds, approximately.", CR
+timer VAR Byte
+DO
+  DEBUG "30 degrees", CR
+  FOR timer=1 TO 100
+  	PULSOUT 14, 417
+  	PAUSE 20
+  NEXT
+  DEBUG "45 degrees", CR
+  FOR timer=1 TO 100
+  	PULSOUT 14, 500
+  	PAUSE 20
+  NEXT
+  DEBUG "90 degrees", CR
+  FOR timer=1 TO 100
+  	PULSOUT 14, 750
+  	PAUSE 20
+  NEXT
+  DEBUG "135 degrees", CR
+  FOR timer=1 TO 100
+  	PULSOUT 14, 1000
+  	PAUSE 20
+  NEXT
+  DEBUG "Arbitrary position: 160 degrees", CR
+  FOR timer=1 TO 100
+  	PULSOUT 14, 1139 'There's a linear (thankfully-logarithmic would have been annoying) relationship between the PULSOUT argument and
+                     'the articulation of the servo- y=(50/9)x+250, where x is the servo's articulation in degrees and y is the PULSOUT argument.
+  	PAUSE 20
+  NEXT
+LOOP

@@ -1,0 +1,41 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ReactionTimer.bs2: Finally, something that's more advanced than "blink" or "read input"! Tests a human's reaction time.
+
+timer VAR Word
+DEBUG "Hold down button to start. When the light turns green, release the button ASAP.", CR
+DO
+	mainloop: 'For the cheater-checker code, allows jumping back to the beginning of the program if button released before light is green.
+  LOW 14
+	LOW 15
+  DO:LOOP UNTIL IN3=1 'Idle loop until button (pulled low) is pressed
+  HIGH 14 'LED red
+  LOW 15
+
+	'Since the timer variable is used for the delay and measuring reaction time, the last reaction time is also the seed for the next delay.
+  'Depending if PBASIC initializes variables or not (I believe it initializes variables to 0), the initial seed may be constant.
+
+  RANDOM timer 'The "timer" variable is used both for counting user reaction time and picking a delay time.
+  timer=timer/20 'Scale the delay value (we don't want a range from 0 to ~65 seconds!)
+  'DEBUG ? timer 'Used in testing for verifying that the scaling factor was well picked.
+  PAUSE timer
+
+  IF IN3=0 THEN 'Cheating, releasing button before light
+    DEBUG "You cheater! You released the button before the light turned green.", CR, CR, "Hold down the button to try again-and don't cheat this time!", CR
+    GOTO mainloop
+  ENDIF
+  'The pseudocode given in the book checks if the timer is less than a certain value at the end. That solution
+  'has 0 overhead during the timing-critical section, but is susceptible to error due to changes in the code.
+  'My solution adds a slight bit of overhead, but is easier to read and may be more robust.
+
+  HIGH 15 'LED green
+  LOW 14
+  timer=0
+  DO
+    PAUSE 1
+    timer=timer+1
+  LOOP UNTIL IN3=0
+  LOW 15 'LED off, pin 14 is already low.
+  timer=timer*/552 'For scaling (multiply by ~2.15625)
+  DEBUG "WHAT? Only ", DEC timer, " milliseconds? You're slow....to a computer, at least!", CR, CR, "Hold down the button to try again.", CR
+LOOP

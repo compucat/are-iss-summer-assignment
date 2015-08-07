@@ -1,0 +1,24 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PolledRCTimer.bs2: A hacky ADC.
+
+DEBUG "Please note that the serial output of this program may look weird on certain terminals (ex. PuTTY)", CR, CR
+i VAR Word
+HIGH 7
+DEBUG "Charging capacitor. Please wait..."
+FOR i=5 TO 0
+  DEBUG DEC i, "..."
+  PAUSE 1000
+NEXT
+
+DEBUG "Done!", CR, "Now measuring decay time...", CR
+INPUT 7
+i=0
+DO
+  PAUSE 100
+  i=i+1
+  DEBUG ? IN7
+  DEBUG DEC5 i, CR, CRSRUP, CRSRUP
+LOOP UNTIL IN7=0
+DEBUG "Done!", CR, CR, "Decay time: ", DEC i, " tenths of a second."
+END

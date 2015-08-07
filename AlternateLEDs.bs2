@@ -1,0 +1,12 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' AlternateLEDs.bs2: Alternately blinking two LEDs. Yet another Blink variation. Works with LEDs on pins 14 and 15 or a bi-color LED and resistor between these pins.
+
+DO
+HIGH 15
+LOW 14
+PAUSE 300
+HIGH 14
+LOW 15
+PAUSE 300
+LOOP

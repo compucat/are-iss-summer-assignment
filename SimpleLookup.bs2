@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SimpleLookup.bs2: Arrays...maybe?
+
+value VAR Byte
+index CON 2
+DEBUG ? index
+LOOKUP index, [7, 85, 19, 167, 28], value
+DEBUG ? value, CR
+DEBUG "Change the index constant between 0 and 4 and redownload to see full lookup table."
+END

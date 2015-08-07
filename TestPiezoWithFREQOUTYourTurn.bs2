@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestPiezoWithFREQOUTYourTurn.bs2: More beeping...
+
+freq CON 1760
+time CON 1000
+
+DEBUG "Now outputting ", DEC freq, " Hz tone on pin 9 for ", DEC time, " milliseconds..."
+FREQOUT 9, time, freq
+DEBUG "Done!"
+END

@@ -1,0 +1,29 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TwinkleTwinkle.bs2: It would sound better on a SID or a POKEY, but square waves on a piezo are OK too.
+
+notes DATA "C", "C", "G", "G", "A", "A", "G"
+freqs DATA Word 2093, Word 2093, Word 3136, Word 3136, Word 3520, Word 3520, Word 3136
+times DATA Word 500, Word 500, Word 500, Word 500, Word 500, Word 500, Word 1000
+
+index VAR Nib
+noteName VAR Byte
+noteFreq VAR Word
+noteTime VAR Word
+
+DEBUG "Note  Duration  Frequency", CR,
+			"----  --------  ---------", CR
+
+
+FOR index=0 TO 6
+  READ notes+index, noteName
+  DEBUG "   ", noteName
+  READ times+(index*2), Word noteTime
+  DEBUG "      ", DEC4 noteTime
+  READ freqs+(index*2), Word noteFreq
+  DEBUG "       ", DEC4 noteFreq, CR
+  FREQOUT 9, noteTime, noteFreq
+NEXT
+END
+
+

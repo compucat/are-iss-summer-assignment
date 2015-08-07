@@ -1,0 +1,19 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ControlServoWithPotUsingDirectives.bs2: Rotation in, rotation out.
+time VAR Word
+scaleFactor CON 205
+offset CON 500
+delay CON 10
+
+potPin PIN 8
+servoPin PIN 14
+
+DO
+	HIGH potPin
+  PAUSE delay
+  RCTIME potPin, 1, time
+  DEBUG ? time
+  time=(time */ scaleFactor)+offset
+  PULSOUT servoPin, time
+LOOP

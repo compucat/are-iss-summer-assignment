@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' LEDOnOff.bs2: a.k.a. Blink, or the "Hello World" of embedded systems.
+'DO
+'DEBUG "On!", CR
+HIGH 14
+PAUSE 8
+'DEBUG "Off!", CR
+LOW 14
+PAUSE 8
+'LOOP

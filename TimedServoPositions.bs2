@@ -1,0 +1,24 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TimedServoPositions.bs2: Hold 3 positions for adjustable seconds each.
+
+DEBUG "READY", CR
+
+timer VAR Byte
+length CON 1 ' Duration of servo hold in seconds.
+
+DEBUG "45 degrees", CR
+FOR timer=1 TO (50*length)
+  PULSOUT 14, 500
+  PAUSE 20
+NEXT
+DEBUG "90 degrees", CR
+FOR timer=1 TO (50*length)
+  PULSOUT 14, 750
+  PAUSE 20
+NEXT
+DEBUG "135 degrees", CR
+FOR timer=1 TO (50*length)
+  PULSOUT 14, 1000
+  PAUSE 20
+NEXT

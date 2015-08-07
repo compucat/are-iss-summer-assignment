@@ -1,0 +1,7 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TimingDiagram1.bs2: Writing code from a timing diagram.
+DO
+  PULSOUT 14, 1000
+  PAUSE 20
+LOOP

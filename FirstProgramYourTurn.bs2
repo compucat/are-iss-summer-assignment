@@ -1,0 +1,8 @@
+'Stamps in Class-FirstProgramYourTurn.bs2
+'A slight variation on Hello World. Almost a one-liner, if you don't count comments, whitespace, compiler directives, or the END statement.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Hello World!", CR, "What's 7x11?", CR, "The answer is: ", DEC 7*11, CR
+END

@@ -1,0 +1,12 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' FlashBothLEDs.bs2: on, off, on, off....you get the point. Yet another variation of Blink, but with two LEDs! 
+
+DO
+HIGH 15
+HIGH 14
+PAUSE 300
+LOW 14
+LOW 15
+PAUSE 300
+LOOP

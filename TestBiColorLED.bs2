@@ -1,0 +1,17 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestBiColorLED.bs2: A cycle of colors. Finally, something slightly different from Blink!
+
+DO
+HIGH 15
+LOW 14
+DEBUG "green, then "
+PAUSE 100
+HIGH 14
+LOW 15
+DEBUG "red, then "
+PAUSE 100
+LOW 14
+DEBUG "off, then "
+PAUSE 100
+LOOP

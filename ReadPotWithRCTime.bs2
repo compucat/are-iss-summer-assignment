@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+'ReadPotWithRCTime.bs2: Polling? No thanks.
+
+time VAR Word
+DO
+HIGH 7
+PAUSE 100
+RCTIME 7,1,time
+DEBUG ? time
+LOOP

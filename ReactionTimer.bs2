@@ -1,0 +1,23 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ReactionTimer.bs2: Finally, something that's more advanced than "blink" or "read input"! Tests a human's reaction time.
+
+timer VAR Word
+DEBUG "Hold down button to start. When the light turns green, release the button ASAP.", CR
+LOW 14
+LOW 15
+DO
+  DO:LOOP UNTIL IN3=1 'Idle loop until button (pulled low) is pressed
+  HIGH 14 'LED red
+  LOW 15
+  PAUSE 1000
+  HIGH 15 'LED green
+  LOW 14
+  timer=0
+  DO
+    PAUSE 1
+    timer=timer+1
+  LOOP UNTIL IN3=0
+  LOW 15 'LED off, pin 14 is already low.
+  DEBUG "WHAT? Only ", DEC timer, " milliseconds? You're slow....to a computer, at least!", CR, CR, "Hold down the button to try again.", CR
+LOOP

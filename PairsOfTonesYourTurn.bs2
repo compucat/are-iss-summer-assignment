@@ -1,0 +1,22 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PairsOfTonesYourTurn.bs2: Yay, condensed code!
+freq VAR Word ' A word variable is used by the text as the frequency is always over 256. However, the frequencies
+							' always range from 2001 to 2005, or 2000+1 to 2000+5. You could use a byte or even a nibble to store
+							' the offset from 2000 and save RAM (which is precious on the BS2 as opposed to the ATMega328p's 2 KB RAM).
+DEBUG "freq: 2000", CR
+FREQOUT 9, 4000, 2000
+
+DEBUG "freq: 3000", CR
+FREQOUT 9, 4000, 3000
+
+DEBUG "freq: 2000+3000", CR
+FREQOUT 9, 4000, 2000, 3000
+
+FOR freq=2001 TO 2005
+	DEBUG "freq: 2000+", DEC freq, CR
+	FREQOUT 9, 4000, 2000, freq
+NEXT
+
+DEBUG "freq: 2000+2010", CR
+FREQOUT 9, 4000, 2000, 2010

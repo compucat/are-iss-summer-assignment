@@ -1,0 +1,10 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestSecondLED.bs2: yet another variation on Blink. Only changes the pin number.
+
+DO
+HIGH 15
+PAUSE 300
+LOW 15
+PAUSE 300
+LOOP

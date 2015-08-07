@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SimpleLookdownEdited: Yes, rounding!
+value CON 35
+index VAR Nib
+DEBUG ? value
+LOOKDOWN value, <= [7, 85, 19, 1, 67, 28], index   'Returns the first value that satisfies the condition; in other words, the first value that 35 is less than or equal to.
+
+DEBUG ? index, CR
+DEBUG "Change the value constant to 7, 85, 19, 167, or 28 and re-upload to see changes."
+END

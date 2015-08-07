@@ -1,0 +1,46 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ActionTonesYourTurn.bs2: Endless possibilities!
+
+freq VAR Word
+time VAR Word
+i VAR Byte
+
+DEBUG "Alarm...", CR
+  PAUSE 100
+  FOR i=1 TO 4
+	  FREQOUT 9, 500, 1500
+  	PAUSE 500
+  NEXT
+
+DEBUG "Robot reply...", CR
+  PAUSE 100
+  FREQOUT 9, 100, 2800
+  FREQOUT 9, 200, 2400
+  FREQOUT 9, 140, 4200
+  FREQOUT 9, 30, 2000
+  PAUSE 500
+
+DEBUG "Hyperspace...", CR
+  PAUSE 100
+  FOR time=15 TO 1
+    FOR freq=2000 TO 2500 STEP 20
+      FREQOUT 9, time, freq
+    NEXT
+  NEXT
+
+DEBUG "Hyperspace jump...", CR
+  PAUSE 100
+  FOR time=15 TO 1 STEP 3
+    FOR freq=2000 TO 2500 STEP 15
+      FREQOUT 9, time, freq
+    NEXT
+  NEXT
+  FOR time=1 TO 36 STEP 3
+    FOR freq=2500 TO 2000 STEP 15
+      FREQOUT 9, time, freq
+    NEXT
+  NEXT
+
+DEBUG "Done", CR
+END

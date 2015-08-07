@@ -1,0 +1,22 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SelectCaseWithCharacters.bs2: Good thing a-z and A-Z are consecutive on the ASCII table!
+char VAR Word
+
+DO
+	DEBUG "Enter a character: "
+  DEBUGIN char
+  DEBUG CR
+  SELECT char
+    CASE "A" TO "Z"
+      DEBUG "Uppercase", CR
+    CASE "a" TO "z"
+      DEBUG "Lowercase", CR
+    CASE "0" TO "9"
+      DEBUG "Numeral", CR
+    CASE "!", "?", ".", ","
+      DEBUG "Punctuation", CR
+    CASE ELSE
+      DEBUG CR, "Error: unknown character. Try again.", CR
+  ENDSELECT
+LOOP

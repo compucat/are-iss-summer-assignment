@@ -1,0 +1,25 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PushbuttonControlOfTwoLEDsModified.bs2: A fixed version of the book's example "PushbuttonControlOfTwoLEDs.bs2".
+
+DO
+  DEBUG HOME
+  DEBUG ? IN3
+  DEBUG ? IN4
+  IF (IN3=1) THEN
+  	HIGH 14
+    PAUSE 50
+    LOW 14
+    PAUSE 50
+  ELSE
+  	LOW 14
+  ENDIF
+  IF (IN4=1) THEN
+  	HIGH 15
+    PAUSE 50
+    LOW 15
+    PAUSE 50
+  ELSE
+  	LOW 15
+  ENDIF
+LOOP

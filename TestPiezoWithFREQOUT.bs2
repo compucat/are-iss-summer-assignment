@@ -1,0 +1,8 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestPiezoWithFREQOUT.bs2: Beep beep beep beep beep beep beep....
+
+DEBUG "Now outputting 2 KHz tone on pin 9 for 1.5 seconds..."
+FREQOUT 9, 1500, 2000
+DEBUG "Done!"
+END

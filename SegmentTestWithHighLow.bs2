@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SegmentTestWithHighLow: testing a 7-seg display
+
+i VAR Nib
+FOR i=8 TO 15
+  DEBUG "Pin ", DEC i, CR
+  HIGH i
+  PAUSE 1000
+  LOW i
+NEXT

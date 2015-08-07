@@ -1,0 +1,15 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' StoreLightMeasurementsInEEPROM.bs2: Yay, datalogging!
+
+time VAR Word
+i VAR Byte
+
+FOR i=1 TO 30
+	HIGH 2
+	PAUSE 10
+	RCTIME 2,1,time
+  WRITE ((i-1)*2), Word time
+	DEBUG ? time
+  PAUSE 4990
+NEXT

@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SimpleLookdown: Oh boy, reversing LOOKUP!
+value CON 167
+index VAR Nib
+DEBUG ? value
+LOOKDOWN value, [7, 85, 19, 1, 67, 28], index
+
+DEBUG ? index, CR
+DEBUG "Change the value constant to 7, 85, 19, 167, or 28 and re-upload to see changes."
+END

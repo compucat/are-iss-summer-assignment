@@ -1,0 +1,24 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SimpleSubroutines.bs2: Well, almost functions, I guess...
+
+DO
+  DEBUG CLS, "Begin main routine.", CR
+  PAUSE 2000
+  GOSUB firstSubroutine
+  DEBUG "Back in main.", CR
+  PAUSE 2000
+  GOSUB secondSubroutine
+  DEBUG "Repeat main...", CR
+  PAUSE 2000
+LOOP
+
+firstSubroutine:
+  DEBUG "Executing first subroutine.", CR
+  PAUSE 3000
+RETURN
+
+secondSubroutine:
+  DEBUG "Executing second subroutine.", CR
+  PAUSE 3000
+RETURN

@@ -1,0 +1,13 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PushbuttonControlledLED.bs2: Blink an LED when a pushbutton is pressed.
+DO
+  IF (IN3=1) THEN
+  	HIGH 14
+    PAUSE 50
+    LOW 14
+    PAUSE 50
+  ELSE
+  	LOW 14
+  ENDIF
+LOOP

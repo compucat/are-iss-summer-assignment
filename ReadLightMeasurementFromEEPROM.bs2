@@ -1,0 +1,13 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ReadLightMeasurementFromEEPROM.bs2: Yay, more datalogging!
+
+time VAR Word
+i VAR Byte
+
+DEBUG "Raw light values from phototransistor, spaced 5s apart for 2.5 mins:", CR
+
+FOR i=1 TO 30
+  READ ((i-1)*2), Word time
+	DEBUG ? time
+NEXT

@@ -1,0 +1,42 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ServoControlWithPushbuttons.bs2: The title says it all.
+' IN4 moves servo right, IN3 moves servo left. Use pullup resistors.
+pos VAR Word
+delay CON 0 'Time of low pulse in ms, minus code (and PBASIC interpreter) overhead.
+'Note delay is set to 0-this is because the DEBUG statement provides enough of a delay to remove the PAUSE.
+'If we remove it, the delay must be set to ~8-10 ms or so.
+'This is where bit-banging servo pulses is not a good idea-it's better to use a microcontroller
+'with a built-in timer, such as the ATMega328p on the Arduino.
+'The PIC on the Stamp might have a timer, but PBASIC might not let us use it.
+stepval CON 25 'Amount to step the pos variable by per loop
+
+hiLimit CON 1000
+loLimit CON 500 'Software position limits
+
+pos=750 'default position
+DO
+  PULSOUT 14, pos
+  IF IN3=1 AND IN4=1 THEN
+    'This if-clause left blank to prevent erratic behavior. (If a clause for "IN3=1 AND IN4=1" is not
+    'used, then the Stamp will try to execute either the go-left or go-right behavior.)
+  ENDIF
+
+  IF IN3=0 THEN 'Higher values turn the servo towards the left.
+    pos=pos+stepval
+  ENDIF
+
+  IF IN4=0 THEN
+    pos=pos-stepval
+  ENDIF
+
+  IF pos<loLimit THEN
+	    pos=loLimit
+  ENDIF
+  IF pos>hiLimit THEN
+	    pos=hiLimit
+  ENDIF
+
+  PAUSE delay
+  DEBUG HOME, "Position (higher=more left): ", DEC pos
+LOOP

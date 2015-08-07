@@ -1,0 +1,6 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestBinaryPhototransistor.bs2: Self-explanatory.
+DO
+DEBUG ? IN2
+LOOP

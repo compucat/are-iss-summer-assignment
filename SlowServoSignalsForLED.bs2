@@ -1,0 +1,8 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' SlowServoSignalsForLED.bs2: Servo signals at 1/10 speed.
+counter VAR Word
+FOR counter=1 TO 30
+  PULSOUT 14, 7500
+  PAUSE 200
+NEXT

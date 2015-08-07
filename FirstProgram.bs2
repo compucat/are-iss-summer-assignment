@@ -1,0 +1,8 @@
+'Stamps in Class-FirstProgram.BS2
+'A classic Hello World example. Modified from the example given
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Hello World!"
+END

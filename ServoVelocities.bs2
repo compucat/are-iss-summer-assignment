@@ -1,0 +1,19 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ServoVelocities.bs2: Turning a servo at different velocities.
+i VAR Word
+DO
+  DEBUG "Increment pulse width by 8", CR
+  FOR i=500 TO 1000 STEP 8
+    PULSOUT 14, i
+    PAUSE 7
+    DEBUG DEC5 i, CR, CRSRUP
+  NEXT
+
+  DEBUG "Decrement pulse width by 20", CR
+  FOR i=1000 TO 500 STEP 20
+    PULSOUT 14, i
+    PAUSE 7
+    DEBUG DEC5 i, CR, CRSRUP
+  NEXT
+LOOP

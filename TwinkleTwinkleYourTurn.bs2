@@ -1,0 +1,28 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TwinkleTwinkleYourTurn.bs2: How I wonder where you are!
+
+notes DATA "C", "C", "G", "G", "A", "A", "G", "F", "F", "E", "E", "D", "D", "C"
+freqs DATA Word 2093, Word 2093, Word 3136, Word 3136, Word 3520, Word 3520, Word 3136, Word 2794, Word 2794, Word 2637, Word 2637, Word 2349, Word 2349, Word 2093
+times DATA Word 500, Word 500, Word 500, Word 500, Word 500, Word 500, Word 1000, Word 500, Word 500, Word 500, Word 500, Word 500, Word 500, Word 1000
+
+index VAR Nib
+noteName VAR Byte
+noteFreq VAR Word
+noteTime VAR Word
+
+DEBUG "Note  Duration  Frequency", CR,
+			"----  --------  ---------", CR
+
+
+FOR index=0 TO 13
+  READ notes+index, noteName
+  DEBUG "   ", noteName
+  READ times+(index*2), Word noteTime
+  DEBUG "      ", DEC4 noteTime
+  READ freqs+(index*2), Word noteFreq
+  DEBUG "       ", DEC4 noteFreq, CR
+  FREQOUT 9, noteTime, noteFreq
+NEXT
+END
+

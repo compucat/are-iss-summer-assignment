@@ -1,0 +1,21 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PushbuttonControlledLEDFasterSlower.bs2: I won't call this another varation of Blink. (Wait, I just did!) Changes rate of blinking in response to pushbutton input.
+' In each stack of two PAUSE statements, uncomment the top one and comment out the lower one to make the pushbutton blink the LED faster. Vice versa for blinking the LED slower.
+DO
+  IF (IN3=1) THEN
+  	HIGH 14
+    'PAUSE 50
+    PAUSE 100
+    LOW 14
+    'PAUSE 50
+    PAUSE 100
+  ELSE
+    HIGH 14
+    'PAUSE 100
+    PAUSE 50
+    LOW 14
+    'PAUSE 100
+    PAUSE 50
+  ENDIF
+LOOP

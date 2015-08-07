@@ -1,0 +1,25 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ThreeServoPositions.bs2: Hold 3 positions for ~3 secs each.
+' I unwittingly created a similar version of this program when writing TestServoPositions.bs2.
+' The book called for creating 3 or 4 simple variations and re-uploading each one to verify servo positions. I decided to consolidate those programs.
+
+DEBUG "READY", CR
+
+timer VAR Byte
+
+DEBUG "45 degrees", CR
+FOR timer=1 TO 150
+  PULSOUT 14, 500
+  PAUSE 20
+NEXT
+DEBUG "90 degrees", CR
+FOR timer=1 TO 150
+  PULSOUT 14, 750
+  PAUSE 20
+NEXT
+DEBUG "135 degrees", CR
+FOR timer=1 TO 150
+  PULSOUT 14, 1000
+  PAUSE 20
+NEXT

@@ -1,0 +1,23 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ServoControlWithDebug.bs2 (a.k.a. "Finally, serial input!")
+
+duration VAR Word
+angle VAR Word
+i VAR Word 'For those who don't know, in C and C-like languages, it is customary to designate i
+           'as a "counter" variable. If nested loops are needed (when initializing 2D arrays, for example),
+           'other counters can be designated as j, k, et cetera.
+DEBUG "Please connect a servo to pin 14.", CR
+DO
+  DEBUG "Runtime (in seconds): "
+  DEBUGIN DEC duration
+  DEBUG "Angle (in degrees): "
+  DEBUGIN DEC angle
+  angle=(angle */ 1422)+250         'PULSOUT parameter=(50/9)*angle+250 (where angle is in degrees)
+  DEBUG "Running..."
+  FOR i=1 TO (duration*50)
+    PULSOUT 14, angle
+    PAUSE 20
+  NEXT
+  DEBUG "Done!", CR
+LOOP

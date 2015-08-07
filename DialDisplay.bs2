@@ -1,0 +1,22 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' DialDisplay.bs2: Wahey, lo-res pot displays!
+
+index VAR Nib
+time VAR Word
+
+OUTH=%00000000
+DIRH=%11111111
+DO
+  HIGH 5
+  PAUSE 10
+  RCTIME 5, 1, time
+  DEBUG ? time
+  LOOKDOWN time, <= [25, 168, 296, 409, 550, 800], index
+  LOOKUP index, [%11100101,
+                 %11100001,
+                 %01100001,
+                 %00100001,
+                 %00000001,
+                 %00000000], OUTH
+LOOP

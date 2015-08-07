@@ -1,0 +1,6 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ReadPushButtonState.bs2: no comment needed. Updated to use a faster refresh rate than the example.
+DO
+DEBUG ? IN3
+LOOP

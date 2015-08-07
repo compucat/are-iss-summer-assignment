@@ -1,0 +1,46 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestBinaryPhototransistorYourTurn.bs2: What happens when TestBinaryPhototransistor and LEDOnOff have children?
+
+' I used a phototransistor on pin 2 and an LED (actually a 7-seg, but who cares) on pin 11.
+
+state VAR Bit
+state=0
+DO
+  DEBUG ? IN2
+  IF IN2 = 0 THEN
+    IF state=0 THEN
+      HIGH 11
+      state=1
+    ELSE
+      LOW 11
+      state=0
+    ENDIF
+    PAUSE 25
+  ELSE
+    LOW 11
+  ENDIF
+LOOP
+
+
+
+' Let's add a challenge-what if we aren't allowed to add an LED on the I/O pins?
+' This solution "cheats" a bit by abusing the USB-Serial converter's TX light as a controllable LED.
+' By sending any message on the serial lines and pausing between messages, we can
+' effectively blink the LED. 
+'
+'state VAR Bit
+'state=0
+'DO
+'  IF IN2 = 0 THEN
+'    IF state=0 THEN
+'      DEBUG "BLINK", CR
+'      state=1
+'    ELSE
+'      state=0
+'    ENDIF
+'    PAUSE 25
+'  ELSE
+'    LOW 11
+'  ENDIF
+'LOOP

@@ -1,0 +1,24 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' PushbuttonControlOfTwoLEDs.bs2: Same as PushbuttonControlledLED.bs2, but duplicated for two switches and LEDs.
+
+DO
+  DEBUG HOME
+  DEBUG ? IN4
+  DEBUG ? IN3
+  IF (IN3=1) THEN
+    HIGH 14
+    PAUSE 50
+  ELSEIF (IN4=1) THEN
+    HIGH 15
+    PAUSE 50
+  ELSE
+    PAUSE 50
+  ENDIF
+
+  LOW 14
+  LOW 15
+
+  PAUSE 50
+
+loop

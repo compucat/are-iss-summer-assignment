@@ -1,0 +1,48 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' MusicWithMoreFeatures.bs2: Dots, octaves, but still only square waves? Oh, well...
+notes DATA "C","E","E","E","D","E","F","E","E","D","D","D","C","D","E","C","Q"
+octaves DATA 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7
+times DATA 4, 2, 4, 4, 4, 4, 2, 2, 4, 2, 4, 4, 4, 4, 2, 2
+dots DATA 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0
+
+bpm CON 320
+index VAR Byte
+offset VAR Nib
+noteName VAR Byte
+noteFreq VAR Word
+noteTime VAR Word
+noteOctave VAR Nib
+noteDot VAR Bit
+
+wholeNote VAR Word
+wholeNote=(60000/bpm)*4
+
+DO UNTIL noteName="Q"
+  READ notes+index, noteName
+  LOOKDOWN noteName, ["C", "d", "D", "e", "E", "F", "g", "G", "a", "A", "b", "B", "P", "Q"], offset 'Lowercase letters are flat
+  LOOKUP offset, [4186, 4435, 4699, 4978, 5274, 5588, 5920, 6272, 6645, 7040, 7459, 7902, 0, 0], noteFreq
+
+  READ octaves+index, noteOctave
+  noteOctave=8-noteOctave           'Smart-by dividing the 8th octave frequency and not multiplying the 1st octave frequency (with rounding errors),
+  noteFreq=noteFreq/(DCD noteOctave)'we achieve better frequency precision at the expense of not supporting the 9th octave or above.
+  																	'However, these weird math operators like DCD are quite annoying-was Parallax really that tight on firmware
+                                    'space to not implement general-purpose exponent operators? It's possible! (Just look at any old C compiler!)
+
+  READ times+index, noteTime
+  noteTime=WholeNote/noteTime
+
+  READ dots+index, noteDot
+  'IF noteDot=1 THEN noteTime=(noteTime*3)/2
+  IF noteDot=1 THEN noteTime=noteTime+(noteTime/2) 'Many microcontrollers (like the PIC16 series in the Stamp)
+                                                   'do not have a hardware multiplier/divider (this must be done
+                                                   'in software). However, most microcontrollers at least have a
+                                                   'hardware integer adder. By replacing a multiply by (3/2) with an "add one-half",
+                                                   'we use only one multiply/divide operation instead of two, which gives a
+                                                   'speed improvement. However, I'm not sure if the overhead of software
+                                                   'multiplication is more or less than the overhead of the PBASIC interpreter.
+
+  FREQOUT 9, noteTime, noteFreq
+  index=index+1
+LOOP
+END

@@ -1,0 +1,39 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ServoControlWithDebug.bs2 (a.k.a. "Finally, serial input!")
+
+duration VAR Word
+angle VAR Word
+i VAR Word 'For those who don't know, in C and C-like languages, it is customary to designate i
+           'as a "counter" variable. If nested loops are needed (when initializing 2D arrays, for example),
+           'other counters can be designated as j, k, et cetera.
+DEBUG "Please connect a servo to pin 14.", CR
+DO
+  top:
+  DEBUG "Runtime (in seconds): "
+  DEBUGIN DEC duration
+  DEBUG "Angle (in degrees): "
+  DEBUGIN DEC angle
+    IF angle<0 OR angle>180 'Check #1: Is the angle in a valid range?
+    DEBUG "Error: invalid angle! Please use angles between 0 and 180 degrees.", CR
+    GOTO top
+  ENDIF
+  angle=(angle */ 1422)+250 'Convert degrees to PULSOUT parameter
+                            'PULSOUT parameter=(50/9)*angle+250 (where angle is in degrees)
+  IF angle < 350 'Check #2: Is the angle safe for the servo?
+                 'Note here that we blindly push back to the nearest valid value, as the first check ensures that
+                 'the user entered a theoretically safe value for the servo. As a servo might not be actually able to
+                 'reach 0-180 degrees, we push it back to a safe value.
+  	angle=350
+  ENDIF
+  IF angle > 1150
+  	angle=1150
+  ENDIF
+
+  DEBUG "Running..."
+  FOR i=1 TO (duration*50)
+    PULSOUT 14, angle
+    PAUSE 20
+  NEXT
+  DEBUG "Done!", CR
+LOOP

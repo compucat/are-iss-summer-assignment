@@ -1,0 +1,11 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' TestPhototransistor.bs2: Yet another RCTime program.
+
+time VAR Word
+DO
+HIGH 2
+PAUSE 100
+RCTIME 2,1,time
+DEBUG ? time
+LOOP

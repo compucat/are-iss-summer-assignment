@@ -1,0 +1,15 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' DoReMiFaSolLaTiDo.bs2: Do Di Re Ri Mi Fa Fi Sol Si La Li Ti Do Ti Te La Le Sol Se Fa Mi Me Re Ra Do! (And no, that's not random nonsense!)
+
+'Solfege            Tone                   Note
+
+DEBUG "Do...", CR:  FREQOUT 9,500,1047    'C6
+DEBUG "Re...", CR:  FREQOUT 9,500,1175    'D6
+DEBUG "Mi...", CR:  FREQOUT 9,500,1319    'E6
+DEBUG "Fa...", CR:  FREQOUT 9,500,1396    'F6
+DEBUG "Sol..", CR:  FREQOUT 9,500,1568    'G6
+DEBUG "La...", CR:  FREQOUT 9,500,1760    'A6
+DEBUG "Ti...", CR:  FREQOUT 9,500,1976    'B6
+DEBUG "Do...", CR:  FREQOUT 9,500,2093    'C7
+END

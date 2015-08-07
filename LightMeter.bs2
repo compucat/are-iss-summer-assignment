@@ -1,0 +1,44 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' LightMeter.bs2: Oh, how I wish I could collapse subroutines like I can in Dev-C++....
+' Sidenote: this would be quite neat with a Dekatron (see http://spritesmods.com/?art=dekatron)
+
+'Variable decs
+index VAR Nib
+time VAR Word
+
+'7-seg init
+OUTH=%00000000
+DIRH=%11111111
+
+'Mainloop
+DO
+  GOSUB getRCTime
+  GOSUB delay
+  GOSUB updateDisplay
+LOOP
+
+'*****Subroutines*****
+
+getRCTime:
+	HIGH 2
+  PAUSE 3
+  RCTIME 2, 1, time
+RETURN
+
+delay: 'This is quite a useless subroutine (just a one-liner). If you want clarity, use comments, not subroutines!
+  PAUSE time/3
+RETURN
+
+
+updateDisplay:
+  IF index=6 THEN index=0
+  '              %bafg.cde
+  LOOKUP index, [%01000000,
+                 %10000000,
+                 %00000100,
+                 %00000010,
+                 %00000001,
+                 %00100000], OUTH
+  index=index+1
+RETURN

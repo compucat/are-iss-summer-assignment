@@ -1,0 +1,7 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' ServoCenter.bs2: An easy way to set the center of a servo. (Note that PBASIC doesn't make this easy to understand-PULSOUT is very low-level.)
+DO
+  PULSOUT 14, 750
+  PAUSE 20
+LOOP
