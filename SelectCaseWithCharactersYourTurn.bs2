@@ -17,7 +17,7 @@ DO
     CASE "!", "?", ".", ","
       DEBUG "Punctuation", CR
     CASE "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+"
-      DEBUg "Special character", CR
+      DEBUG "Special character", CR
     CASE ELSE
       DEBUG CR, "Error: unknown character. Try again.", CR
   ENDSELECT
